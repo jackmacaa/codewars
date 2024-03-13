@@ -110,3 +110,14 @@ export function isIsogram(str: string): boolean {
   return true;  // return new Set(str.split('')).size === str.length;
 }
 console.log(isIsogram("dermatoglyphics"))//  false); // "same chars may not be same case"
+
+export function betterThanAverage(
+  classPoints: number[],
+  yourPoints: number
+): boolean {
+  const total = classPoints.reduce((prev, curr) => curr + prev, yourPoints);
+  const avg = total / (classPoints.length + 1);
+
+  return avg <= yourPoints ? true : false;
+}
+console.log(betterThanAverage([2, 3], 5)); // true
