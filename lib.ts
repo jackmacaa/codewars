@@ -1,17 +1,17 @@
-export const fakeBin = (x:string): string => {
-  let str = ''
+export const fakeBin = (x: string): string => {
+  let str = "";
 
-  for(const letter of x){
-      if(Number(letter) < 5){
-          str += '0'
-      } else {
-          str += '1'
-      }
+  for (const letter of x) {
+    if (Number(letter) < 5) {
+      str += "0";
+    } else {
+      str += "1";
+    }
   }
 
-  return str
+  return str;
 };
-console.log(fakeBin('45385593107843568'),) // '01011110001100111'
+console.log(fakeBin("45385593107843568")); // '01011110001100111'
 
 export function findSmallestInt(args: number[]): number {
   let lowest = args[0];
@@ -70,26 +70,27 @@ console.log(hero(10, 5)); // true
 export function abbrevName(name: string): string {
   const names = name.split(" ");
 
-  return `${names[0][0].toUpperCase()}.${names[1][0].toUpperCase()}`
+  return `${names[0][0].toUpperCase()}.${names[1][0].toUpperCase()}`;
 }
-console.log(abbrevName("Sam harris")) // S.H
+console.log(abbrevName("Sam harris")); // S.H
 
 export const centuryFromYear = (year: number): number => {
-  return Math.ceil(year  / 100)
+  return Math.ceil(year / 100);
 };
-console.log(centuryFromYear(1700)) // 18
+console.log(centuryFromYear(1700)); // 18
 
 export const digitize = (n: number): number[] => {
   return n
     .toString() // [...n.toString()]
-    .split("") // 
-    .map((item) => Number(item))  //  .map(Number) 
+    .split("") //
+    .map((item) => Number(item)) //  .map(Number)
     .reverse();
 };
 console.log(digitize(35231)); // [1,3,2,5,3])
 
 export function evenOrOdd(n: number): string {
-  if (n % 2 === 1 || n % 2 === -1) { // n %2=== 0 ? 'Even' :'Odd';
+  if (n % 2 === 1 || n % 2 === -1) {
+    // n %2=== 0 ? 'Even' :'Odd';
     return "Odd";
   }
   return "Even";
@@ -107,9 +108,9 @@ export function isIsogram(str: string): boolean {
       return false;
     }
   }
-  return true;  // return new Set(str.split('')).size === str.length;
+  return true; // return new Set(str.split('')).size === str.length;
 }
-console.log(isIsogram("dermatoglyphics"))//  false); // "same chars may not be same case"
+console.log(isIsogram("dermatoglyphics")); //  false); // "same chars may not be same case"
 
 export function betterThanAverage(
   classPoints: number[],
@@ -121,3 +122,62 @@ export function betterThanAverage(
   return avg <= yourPoints ? true : false;
 }
 console.log(betterThanAverage([2, 3], 5)); // true
+
+export function sumPairsOriginal(
+  ints: number[],
+  s: number
+): [number, number] | void {
+  let pairs: Array<[number, number, number]> = [];
+
+  for (let i = 0; i < ints.length; i < i++) {
+    for (let j = i + 1; j < ints.length; j++) {
+      let lowestIndex = 100;
+      if (ints[i] + ints[j] === s) {
+        pairs.push([ints[i], ints[j], j]);
+      }
+    }
+  }
+
+  if (pairs.length === 0) {
+    return undefined;
+  }
+
+  let small = 1000;
+  let index = 0;
+
+  pairs.forEach((pair, i) => {
+    if (pair[2] < small) {
+      small = pair[2];
+      index = i;
+    }
+  });
+
+  return [pairs[index][0], pairs[index][1]];
+}
+export function sumPairsRefactor(
+  ints: number[],
+  s: number
+): [number, number] | void {
+  let pairs: Array<[number, number]> = [];
+  let lowestIndex = 100;
+
+  for (let i = 0; i < ints.length; i < i++) {
+    for (let j = i + 1; j < ints.length; j++) {
+      if (ints[i] + ints[j] === s) {
+        if (j < lowestIndex) {
+          pairs.push([ints[i], ints[j]]);
+          lowestIndex = j;
+        }
+      }
+    }
+  }
+
+  if (pairs.length === 0) {
+    return undefined;
+  }
+
+  return pairs[pairs.length - 1];
+}
+console.log(sumPairsRefactor([1, 4, 8, 7, 3, 15], 8)); // [1, 7],)
+console.log(sumPairsRefactor([10, 5, 2, 3, 7, 5], 10)); // [3, 7],)
+console.log(sumPairsRefactor([1, 2, 3, 4, 1, 0], 2)); // [1, 1],)
