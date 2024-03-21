@@ -184,11 +184,11 @@ console.log(sumPairsRefactor([1, 2, 3, 4, 1, 0], 2)); // [1, 1],)
 
 export class Kata {
   static highAndLow(numbers: string): string {
-    const splitNum = numbers.split(" ")
+    const splitNum = numbers.split(" ");
 
-    const numArr = splitNum.map((num) => Number(num)) // splitNum.map(Number) 
+    const numArr = splitNum.map((num) => Number(num)); // splitNum.map(Number)
 
-    return `${Math.max(...numArr)} ${Math.min(...numArr)}`
+    return `${Math.max(...numArr)} ${Math.min(...numArr)}`;
   }
 }
 console.log(Kata.highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4")); // "42 -9"
@@ -201,7 +201,63 @@ export function getMiddle(s: string) {
     return `${s[middle - 1]}${s[middle]}`;
   }
 
-  return s[Math.ceil(middle) -1];
+  return s[Math.ceil(middle) - 1];
 }
 console.log(getMiddle("test")); //  "es"
 console.log(getMiddle("testing")); //  "t"
+
+export function basicOp(
+  operation: string,
+  value1: number,
+  value2: number
+): number {
+  switch (operation) {
+    case "+":
+      return value1 + value2;
+    case "-":
+      return value1 - value2;
+    case "*":
+      return value1 * value2;
+    case "/":
+      return value1 / value2;
+    default:
+      throw new Error("Incorrect operator sent");
+  }
+}
+// const ops = {
+//   "+": (l: number, r: number) => l + r,
+//   "-": (l: number, r: number) => l - r,
+//   "*": (l: number, r: number) => l * r,
+//   "/": (l: number, r: number) => l / r,
+// };
+// export const basicOp = (
+//   operation: keyof typeof ops,
+//   value1: number,
+//   value2: number
+// ): number => ops[operation](value1, value2);
+
+// export function basicOp(
+//   operation: string,
+//   value1: number,
+//   value2: number
+// ): number {
+//   return eval(value1.toString() + operation + value2.toString());
+// }
+console.log(basicOp("+", 4, 7)); // 11)
+console.log(basicOp("-", 15, 18)); // -3)
+console.log(basicOp("*", 5, 5)); // 25)
+console.log(basicOp("/", 49, 7)); //, 7)
+
+export function past(h: number, m: number, s: number): number {
+  const minutes = 60;
+  const seconds = 60;
+  const milliSeconds = 1000;
+
+  const hourInMs = h * minutes * minutes * milliSeconds;
+  const minInMs = m * seconds * milliSeconds;
+  const secInMs = s * milliSeconds;
+
+  return hourInMs + minInMs + secInMs;
+}
+console.log(past(0, 1, 1)); // 61000
+console.log(past(1, 1, 1)); // 3661000
