@@ -181,3 +181,27 @@ export function sumPairsRefactor(
 console.log(sumPairsRefactor([1, 4, 8, 7, 3, 15], 8)); // [1, 7],)
 console.log(sumPairsRefactor([10, 5, 2, 3, 7, 5], 10)); // [3, 7],)
 console.log(sumPairsRefactor([1, 2, 3, 4, 1, 0], 2)); // [1, 1],)
+
+export class Kata {
+  static highAndLow(numbers: string): string {
+    const splitNum = numbers.split(" ")
+
+    const numArr = splitNum.map((num) => Number(num)) // splitNum.map(Number) 
+
+    return `${Math.max(...numArr)} ${Math.min(...numArr)}`
+  }
+}
+console.log(Kata.highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4")); // "42 -9"
+
+export function getMiddle(s: string) {
+  const length = s.length;
+  const middle = length / 2;
+
+  if (length % 2 === 0) {
+    return `${s[middle - 1]}${s[middle]}`;
+  }
+
+  return s[Math.ceil(middle) -1];
+}
+console.log(getMiddle("test")); //  "es"
+console.log(getMiddle("testing")); //  "t"
