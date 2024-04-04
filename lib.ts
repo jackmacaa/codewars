@@ -261,3 +261,34 @@ export function past(h: number, m: number, s: number): number {
 }
 console.log(past(0, 1, 1)); // 61000
 console.log(past(1, 1, 1)); // 3661000
+
+export function pyramid(n: number): Array<Array<Number>> {
+  const arr: number[][] = [];
+
+  for (let i = 1; i <= n; i++) {
+    arr.push(createOneArray(i));
+  }
+
+  return arr;
+}
+const createOneArray = (num: number): number[] => {
+  let index = 0;
+
+  const arrOne: number[] = [];
+
+  while (index < num) {
+    arrOne[index] = 1;
+    index++;
+  }
+
+  return arrOne;
+};
+console.log(pyramid(3)); // [[1], [1, 1]]
+
+export function createPhoneNumber(numbers: number[]): string {
+  return `(${numbers[0]}${numbers[1]}${numbers[2]}) ${numbers[3]}${numbers[4]}${numbers[5]}-${numbers[6]}${numbers[7]}${numbers[8]}${numbers[9]}`;
+}
+//   let phoneNumber:string = "(xxx) xxx-xxxx"
+//   for(let i=0; i<numbers.length; i++){
+//     phoneNumber = phoneNumber.replace("x", numbers[i].toString())  }
+console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])); //, "(123) 456-7890"
