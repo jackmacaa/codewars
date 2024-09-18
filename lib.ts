@@ -292,3 +292,60 @@ export function createPhoneNumber(numbers: number[]): string {
 //   for(let i=0; i<numbers.length; i++){
 //     phoneNumber = phoneNumber.replace("x", numbers[i].toString())  }
 console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])); //, "(123) 456-7890"
+
+type matrix = number[][];
+export function matrixAddition(a: matrix, b: matrix): matrix {
+  let result: matrix = a;
+
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < a.length; j++) {
+      result[i][j] += b[i][j];
+    }
+  }
+
+  return result;
+}
+console.log(
+  matrixAddition(
+    [
+      [1, 2],
+      [1, 2],
+    ],
+    [
+      [2, 3],
+      [2, 3],
+    ]
+  )
+);
+
+export function narcissistic(value: number): boolean {
+  const strNum = value.toString();
+  const pow = strNum.length;
+
+  let sum = 0;
+  for (let i = 0; i < pow; i++) {
+    sum += Math.pow(Number(strNum[i]), pow);
+  }
+
+  if (sum === value) {
+    return true;
+  }
+
+  return false;
+}
+
+console.log(narcissistic(153));
+
+export function humanReadable(seconds: number): string {
+  const hours = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds - hours * 3600) / 60);
+  const secs = seconds - hours * 3600 - mins * 60;
+
+  const hoursString = String(hours).padStart(2, "0");
+  const minsString = String(mins).padStart(2, "0");
+  const secsString = String(secs).padStart(2, "0");
+
+  return `${hoursString}:${minsString}:${secsString}`;
+}
+
+console.log(humanReadable(61), "00:00:05");
